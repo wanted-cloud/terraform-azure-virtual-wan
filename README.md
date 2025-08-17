@@ -1,7 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
-# wanted-cloud/terraform-module-template
+# wanted-cloud/terraform-azure-virtual-wan
 
-This repository represents a template for a Terraform building block module as we think it should be done, so it's for sure opinionated but in our eyes simple and powerful. Feel free to use or contribute.
+Simple Terraform building block wrapping Azure Virtual WAN resource.
 
 ## Table of contents
 
@@ -15,19 +15,61 @@ This repository represents a template for a Terraform building block module as w
 
 ## Requirements
 
-No requirements.
+The following requirements are needed by this module:
+
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.9)
+
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>=4.20.0)
 
 ## Providers
 
-No providers.
+The following providers are used by this module:
+
+- <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) (>=4.20.0)
 
 ## Required Inputs
 
-No required inputs.
+The following input variables are required:
+
+### <a name="input_name"></a> [name](#input\_name)
+
+Description: The name of the Virtual WAN to be provisioned.
+
+Type: `string`
+
+### <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name)
+
+Description: The name of the resource group where the Virtual WAN will be created.
+
+Type: `string`
 
 ## Optional Inputs
 
 The following input variables are optional (have default values):
+
+### <a name="input_allow_branch_to_branch_traffic"></a> [allow\_branch\_to\_branch\_traffic](#input\_allow\_branch\_to\_branch\_traffic)
+
+Description: Whether to allow branch-to-branch traffic for the Virtual WAN.
+
+Type: `bool`
+
+Default: `true`
+
+### <a name="input_disable_vpn_encryption"></a> [disable\_vpn\_encryption](#input\_disable\_vpn\_encryption)
+
+Description: Whether to disable VPN encryption for the Virtual WAN.
+
+Type: `bool`
+
+Default: `false`
+
+### <a name="input_location"></a> [location](#input\_location)
+
+Description: The location/region where the Virtual WAN will be created.
+
+Type: `string`
+
+Default: `""`
 
 ### <a name="input_metadata"></a> [metadata](#input\_metadata)
 
@@ -55,13 +97,44 @@ object({
 
 Default: `{}`
 
+### <a name="input_office365_local_breakout_category"></a> [office365\_local\_breakout\_category](#input\_office365\_local\_breakout\_category)
+
+Description: The Office 365 local breakout category for the Virtual WAN.
+
+Type: `string`
+
+Default: `"None"`
+
+### <a name="input_tags"></a> [tags](#input\_tags)
+
+Description: A map of tags to assign to the Virtual WAN.
+
+Type: `map(string)`
+
+Default: `{}`
+
+### <a name="input_type"></a> [type](#input\_type)
+
+Description: The type of the Virtual WAN (e.g., 'Standard', 'Basic').
+
+Type: `string`
+
+Default: `"Standard"`
+
 ## Outputs
 
-No outputs.
+The following outputs are exported:
+
+### <a name="output_virtual_wan"></a> [virtual\_wan](#output\_virtual\_wan)
+
+Description: The Azure Virtual WAN resource.
 
 ## Resources
 
-No resources.
+The following resources are used by this module:
+
+- [azurerm_virtual_wan.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_wan) (resource)
+- [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) (data source)
 
 ## Usage
 
